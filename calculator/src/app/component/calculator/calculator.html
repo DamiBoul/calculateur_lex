@@ -1,7 +1,7 @@
-<p>calculator works!</p>
+<app-locale-switch (localeChanged)="onLocaleChange($event)"></app-locale-switch>
 
 <input type="checkbox" [formControl]="hasDecor">
 
 @if (hasDecor.getRawValue()) {
-    <app-decor></app-decor>
+    <app-decor #decor [localeObservable]="localeObservable"></app-decor>
 }

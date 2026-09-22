@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-perso',
@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './perso.html',
   styleUrl: './perso.scss',
 })
-export class Perso {}
+export class Perso {
+  @Input({required: true})locale = 'fr';}
