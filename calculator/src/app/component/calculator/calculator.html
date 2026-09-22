@@ -1,1 +1,7 @@
 <p>calculator works!</p>
+
+<input type="checkbox" [formControl]="hasDecor">
+
+@if (hasDecor.getRawValue()) {
+    <app-decor></app-decor>
+}
