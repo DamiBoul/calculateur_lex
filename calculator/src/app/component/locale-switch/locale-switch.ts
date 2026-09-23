@@ -17,7 +17,7 @@ export class LocaleSwitch {
   locales = [
     { code: Constantes.INDICE_FRANCAIS, name: 'Français' },
     { code: Constantes.INDICE_ANGLAIS, name: 'English' },
-    { code: Constantes.INDICE_NOF, name: 'Nùvel òrtograf franssèz' },
+    { code: Constantes.INDICE_NOF, name: 'nùvèl ortôgraf fransèz' },
   ];
 @Output('localeChanged') localeChanged = new EventEmitter<number>();
  activeLocale: number = 0;

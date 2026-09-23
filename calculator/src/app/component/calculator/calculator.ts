@@ -1,9 +1,10 @@
-import { Component, OnInit, viewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, viewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared-module';
 import { LocaleSwitch } from '../locale-switch/locale-switch';
 import { Constantes } from '../../shared/constantes';
 import { Subject } from 'rxjs';
+import { Decor } from '../../shared/decor/decor';
 
 @Component({
   selector: 'app-calculator',
@@ -13,7 +14,7 @@ import { Subject } from 'rxjs';
 })
 export class Calculator implements OnInit {
 
-  decorFields = viewChild('decor');
+  @ViewChild(Decor) decorFields!: Decor;
 
   hasDecor = new FormControl('');
 
@@ -39,5 +40,9 @@ onLocaleChange(val: number | null){
 
   onDecorCheckChange(val: string | null) {
     this.showDecorField = val === 'true';
+  }
+
+  onSubmit(){
+    console.log('cc1',this.decorFields.calculerScore());
   }
 }

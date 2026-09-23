@@ -1,8 +1,23 @@
-<select>
-    <option value="abstrait">Motif ou Abstrait</option>
-    <option value="accessoire">Accessoire</option>
-    <option value="simple">Fond simple</option>
-    <option value="scene">Scène</option>
+<select [(ngModel)]="selectRepresente">
+    <option value="2">{{texteAbstrait}}</option>
+    <option value="5">{{texteAccessoire}}</option>
+    <option value="10">{{texteSimple}}</option>
+    <option value="20">{{texteScene}}</option>
 </select>
 
-<div>{{ texteDeTest }}</div>
+<select [(ngModel)]="selectEncrage">
+    <option value="sketch">{{texteSketch}}</option>
+    <option value="abouti">{{texteEncrageAbouti}}</option>
+</select>
+
+<select [(ngModel)]="selectCouleur">
+    <option value="aucun">{{texteAucun}}</option>
+    <option value="brouillon">{{texteBrouillon}}</option>
+    <option value="abouti">{{texteCouleurAbouti}}</option>
+</select>
+
+<select [(ngModel)]="selectOmbrage">
+    <option value="1">{{texteOmbrageAucun}}</option>
+    <option value="1.2">{{texteOmbrageSimple}}</option>
+    <option value="1.5">{{texteOmbrageComplet}}</option>
+</select>
