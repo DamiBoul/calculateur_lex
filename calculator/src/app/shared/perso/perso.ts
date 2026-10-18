@@ -11,6 +11,8 @@ import { Subscription, Observable } from 'rxjs';
 })
 export class Perso implements OnInit, OnDestroy {
   @Input({ required: true }) localeObservable!: Observable<number>;
+  @Input() index = 0;
+
   private localeSubscription?: Subscription;
 
   selectRepresente: number = 5;
@@ -68,7 +70,7 @@ export class Perso implements OnInit, OnDestroy {
   }
 
   public calculerScore(){
-    this.sousTotal = this.selectRepresente * this.calculerFinition() * this.selectOmbrage;
+    this.sousTotal = this.selectRepresente * this.calculerFinition() * this.selectOmbrage * (1 + this.index * 0.2);
     return this.sousTotal;
   }
 

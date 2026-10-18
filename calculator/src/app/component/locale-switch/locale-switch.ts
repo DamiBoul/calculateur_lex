@@ -6,6 +6,7 @@ import { Constantes } from '../../shared/constantes';
 @Component({
   selector: 'app-locale-switch',
   templateUrl: './locale-switch.html',
+  styleUrl: './locale-switch.scss',
   imports: [CommonModule, FormsModule],
 })
 export class LocaleSwitch {

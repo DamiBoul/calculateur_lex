@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared-module';
 import { LocaleSwitch } from '../locale-switch/locale-switch';
@@ -16,13 +16,14 @@ import { Perso } from '../../shared/perso/perso';
 export class Calculator implements OnInit {
 
   @ViewChild(Decor) decorFields!: Decor;
-  @ViewChild(Perso) persoFields!: Perso;
+  @ViewChildren(Perso) persoFields!: QueryList<Perso>;
 
   hasDecor = new FormControl('');
 
   showDecorField = false;
   locale = Constantes.INDICE_FRANCAIS;
   total = 0;
+  persoIndexes: number[] = [0];
 
   private readonly localeSubject =
   new BehaviorSubject<number>(Constantes.INDICE_FRANCAIS);
@@ -30,9 +31,7 @@ export class Calculator implements OnInit {
   readonly localeObservable = this.localeSubject.asObservable();
 
   ngOnInit(): void {
-    this.hasDecor.valueChanges.subscribe((val) => {
-      this.onDecorCheckChange(val)
-    })
+    this.initForms();
   }
 
   initForms(){
@@ -46,15 +45,24 @@ export class Calculator implements OnInit {
     console.log(this.locale, this.localeObservable);
   }
 
-  onDecorCheckChange(val: string | null) {
-    this.showDecorField = val === 'true';
+  addChar(): void {
+    this.persoIndexes.push(this.persoIndexes.length);
+  }
+
+  delChar(): void {
+    if (this.persoIndexes.length > 1) {
+      this.persoIndexes.pop();
+    }
   }
 
   onSubmit(): void {
     const sousTotalDecor = this.decorFields.calculerScore();
-    const sousTotalPerso = this.persoFields.calculerScore();
 
-    this.total = sousTotalDecor + sousTotalPerso;
+    const sousTotalPersos = this.persoFields
+    .toArray()
+    .reduce((somme: number, perso: Perso) => somme + perso.calculerScore(), 0);
+
+    this.total = sousTotalDecor + sousTotalPersos;
   }
 
   get enteteRepresente(): string {
@@ -86,5 +94,9 @@ export class Calculator implements OnInit {
   }
   get retraitPerso(): string {
     return Constantes.BOUTON_REMOVE[this.locale] ?? '';
+  }
+
+  get reminder(): string {
+    return Constantes.REMINDER[this.locale] ?? '';
   }
 }

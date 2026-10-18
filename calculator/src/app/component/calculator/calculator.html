@@ -1,6 +1,7 @@
 <app-locale-switch (localeChanged)="onLocaleChange($event)"></app-locale-switch>
 
-<br><br>
+<p>{{reminder}}</p>
+<br>
 <table>
     <thead>
         <tr>
@@ -18,18 +19,19 @@
         #decor
         [localeObservable]="localeObservable"
         ></tr>
+        @for (index of persoIndexes; track index) {
         <tr
-        app-perso
-        #perso
-        [localeObservable]="localeObservable"
+            app-perso
+            [index]="index"
+            [localeObservable]="localeObservable"
         ></tr>
+        }
     </tbody>
 </table>
+<br>
 
-
-<br><br>
 <p>Total : {{ total }}</p>
 <button (click)="onSubmit()">OK</button>
-<button (click)="onSubmit()">{{ajoutPerso}}</button>
-<button (click)="onSubmit()">{{retraitPerso}}</button>
+<button (click)="addChar()">{{ajoutPerso}}</button>
+<button (click)="delChar()">{{retraitPerso}}</button>
 
