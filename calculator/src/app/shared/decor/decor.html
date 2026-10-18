@@ -1,23 +1,41 @@
-<select [(ngModel)]="selectRepresente">
-    <option value="2">{{texteAbstrait}}</option>
-    <option value="5">{{texteAccessoire}}</option>
-    <option value="10">{{texteSimple}}</option>
-    <option value="20">{{texteScene}}</option>
-</select>
 
-<select [(ngModel)]="selectEncrage">
-    <option value="sketch">{{texteSketch}}</option>
-    <option value="abouti">{{texteEncrageAbouti}}</option>
-</select>
+<td>
+    {{texteLigne}}
+</td>
 
-<select [(ngModel)]="selectCouleur">
-    <option value="aucun">{{texteAucun}}</option>
-    <option value="brouillon">{{texteBrouillon}}</option>
-    <option value="abouti">{{texteCouleurAbouti}}</option>
-</select>
+<td>
+    <select [(ngModel)]="selectRepresente">
+        <option [ngValue]="0">{{texteNo}}</option>
+        <option [ngValue]="2">{{texteAbstrait}}</option>
+        <option [ngValue]="5">{{texteAccessoire}}</option>
+        <option [ngValue]="10">{{texteSimple}}</option>
+        <option [ngValue]="20">{{texteScene}}</option>
+    </select>
+</td>
 
-<select [(ngModel)]="selectOmbrage">
-    <option value="1">{{texteOmbrageAucun}}</option>
-    <option value="1.2">{{texteOmbrageSimple}}</option>
-    <option value="1.5">{{texteOmbrageComplet}}</option>
-</select>
+<td>
+    <select [(ngModel)]="selectEncrage">
+        <option value="sketch">{{texteSketch}}</option>
+        <option value="abouti">{{texteEncrageAbouti}}</option>
+    </select>
+</td>
+
+<td>
+    <select [(ngModel)]="selectCouleur">
+        <option value="aucun">{{texteAucun}}</option>
+        <option value="brouillon">{{texteBrouillon}}</option>
+        <option value="abouti">{{texteCouleurAbouti}}</option>
+    </select>
+</td>
+
+<td>
+    <select [(ngModel)]="selectOmbrage">
+        <option [ngValue]="1">{{texteOmbrageAucun}}</option>
+        <option [ngValue]="1.2">{{texteOmbrageSimple}}</option>
+        <option [ngValue]="1.5">{{texteOmbrageComplet}}</option>
+    </select>
+</td>
+
+<td>
+    {{sousTotal}}
+</td>

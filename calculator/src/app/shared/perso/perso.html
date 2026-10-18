@@ -1,1 +1,41 @@
-<p>perso works!</p>
+
+<td>
+    {{texteLigne}}
+</td>
+
+<td>
+    <select [(ngModel)]="selectRepresente">
+        <option [ngValue]="5">{{texteNo}}</option>
+        <option [ngValue]="10">{{texteAbstrait}}</option>
+        <option [ngValue]="20">{{texteAccessoire}}</option>
+        <option [ngValue]="25">{{texteSimple}}</option>
+        <option [ngValue]="30">{{texteScene}}</option>
+    </select>
+</td>
+
+<td>
+    <select [(ngModel)]="selectEncrage">
+        <option value="sketch">{{texteSketch}}</option>
+        <option value="abouti">{{texteEncrageAbouti}}</option>
+    </select>
+</td>
+
+<td>
+    <select [(ngModel)]="selectCouleur">
+        <option value="aucun">{{texteAucun}}</option>
+        <option value="brouillon">{{texteBrouillon}}</option>
+        <option value="abouti">{{texteCouleurAbouti}}</option>
+    </select>
+</td>
+
+<td>
+    <select [(ngModel)]="selectOmbrage">
+        <option [ngValue]="1">{{texteOmbrageAucun}}</option>
+        <option [ngValue]="1.2">{{texteOmbrageSimple}}</option>
+        <option [ngValue]="1.5">{{texteOmbrageComplet}}</option>
+    </select>
+</td>
+
+<td>
+    {{sousTotal}}
+</td>

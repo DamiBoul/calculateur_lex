@@ -1,22 +1,26 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Constantes } from '../constantes';
-import { Subject } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-decor',
+  selector: 'tr[app-decor]',
   imports: [FormsModule],
   templateUrl: './decor.html',
   styleUrl: './decor.scss',
 })
-export class Decor implements OnInit {
-  @Input({required: true}) localeObservable = new Subject<number>();
+export class Decor implements OnInit, OnDestroy {
+  @Input({ required: true }) localeObservable!: Observable<number>;
+  private localeSubscription?: Subscription;
 
-  selectRepresente: number = 2;
+  selectRepresente: number = 0;
   selectEncrage: string = 'sketch';
   selectCouleur: string = 'aucun';
   selectOmbrage: number = 1;
+  sousTotal: number = 0;
 
+  texteLigne: string = '';
+  texteNo: string = '';
   texteAbstrait: string = '';
   texteAccessoire: string = '';
   texteSimple: string = '';
@@ -34,14 +38,17 @@ export class Decor implements OnInit {
   texteOmbrageComplet: string = '';
 
   ngOnInit(): void {
-    this.actualiserTrad(Constantes.INDICE_FRANCAIS);
-
-    this.localeObservable.subscribe(value => {
-      this.actualiserTrad(value);
+    this.localeSubscription = this.localeObservable.subscribe(indice => {
+      this.actualiserTrad(indice);
     });
+  }
+  ngOnDestroy(): void {
+    this.localeSubscription?.unsubscribe();
   }
 
   protected actualiserTrad(indice : number){
+      this.texteLigne = Constantes.DEC_FOND[indice];
+      this.texteNo = Constantes.DEC_AUCUN[indice];
       this.texteAbstrait = Constantes.DEC_ABSTRAIT[indice];
       this.texteAccessoire = Constantes.DEC_ACCESSOIRE[indice];
       this.texteSimple = Constantes.DEC_SIMPLE[indice];
@@ -60,7 +67,8 @@ export class Decor implements OnInit {
   }
 
   public calculerScore(){
-    return this.selectRepresente * this.calculerFinition() * this.selectOmbrage;
+    this.sousTotal = this.selectRepresente * this.calculerFinition() * this.selectOmbrage;
+    return this.sousTotal;
   }
 
   private calculerFinition(){

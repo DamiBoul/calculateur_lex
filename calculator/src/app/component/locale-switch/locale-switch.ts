@@ -1,17 +1,12 @@
-import {
-  Inject,
-  Component,
-  LOCALE_ID,
-  OnInit,
-  Output, EventEmitter
-} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ɵInternalFormsSharedModule } from '@angular/forms';
 import { Constantes } from '../../shared/constantes';
+
 @Component({
   selector: 'app-locale-switch',
   templateUrl: './locale-switch.html',
-  imports: [ɵInternalFormsSharedModule, FormsModule],
+  imports: [CommonModule, FormsModule],
 })
 export class LocaleSwitch {
   locales = [
@@ -19,10 +14,13 @@ export class LocaleSwitch {
     { code: Constantes.INDICE_ANGLAIS, name: 'English' },
     { code: Constantes.INDICE_NOF, name: 'nùvèl ortôgraf fransèz' },
   ];
-@Output('localeChanged') localeChanged = new EventEmitter<number>();
- activeLocale: number = 0;
 
- onChange(){
-  this.localeChanged.emit(this.activeLocale);
- }
+  @Output() localeChanged = new EventEmitter<number>();
+  activeLocale = Constantes.INDICE_FRANCAIS;
+
+  onChange(indice: number): void {
+    this.activeLocale = indice;
+    this.localeChanged.emit(indice);
+    console.log(indice);
+  }
 }

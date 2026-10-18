@@ -1,9 +1,35 @@
 <app-locale-switch (localeChanged)="onLocaleChange($event)"></app-locale-switch>
 
-<input type="checkbox" [formControl]="hasDecor">
+<br><br>
+<table>
+    <thead>
+        <tr>
+            <th>{{ enteteRepresente }}</th>
+            <th>{{ enteteTaille }}</th>
+            <th>{{ enteteFinition }}</th>
+            <th>{{ enteteCouleur }}</th>
+            <th>{{ enteteOmbrage }}</th>
+            <th>{{ enteteSousTotal }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+        app-decor
+        #decor
+        [localeObservable]="localeObservable"
+        ></tr>
+        <tr
+        app-perso
+        #perso
+        [localeObservable]="localeObservable"
+        ></tr>
+    </tbody>
+</table>
 
-@if (hasDecor.getRawValue()) {
-    <app-decor #decor [localeObservable]="localeObservable"></app-decor>
-}
 
+<br><br>
+<p>Total : {{ total }}</p>
 <button (click)="onSubmit()">OK</button>
+<button (click)="onSubmit()">{{ajoutPerso}}</button>
+<button (click)="onSubmit()">{{retraitPerso}}</button>
+
